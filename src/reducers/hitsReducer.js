@@ -2,6 +2,17 @@ import { UPDATE_HITS, PUSH_TO_STREAM_HITS, REMOVE_COMPONENT } from '../constants
 
 export default function hitsReducer(state = {}, action) {
 	if (action.type === UPDATE_HITS) {
+		if (action.prepend) {
+			return {
+				...state,
+				[action.component]: {
+					hits: [...action.hits, ...state[action.component].hits],
+					total: action.total,
+					time: action.time,
+					hidden: action.hidden || 0,
+				},
+			};
+		}
 		if (action.append) {
 			return {
 				...state,

@@ -18,7 +18,7 @@ export function updateCompositeAggs(component, aggregations, append = false) {
 	};
 }
 
-export function updateHits(component, hits, time, hidden, append = false) {
+export function updateHits(component, hits, time, hidden, append = false, prepend = false) {
 	return {
 		type: UPDATE_HITS,
 		component,
@@ -28,6 +28,7 @@ export function updateHits(component, hits, time, hidden, append = false) {
 		hidden,
 		time,
 		append,
+		prepend,
 	};
 }
 

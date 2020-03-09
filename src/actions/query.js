@@ -125,6 +125,7 @@ function msearch(
 	isInternalComponent = false,
 	appendToAggs = false,
 	componentType,
+	prependToHits = false,
 ) {
 	return (dispatch, getState) => {
 		const {
@@ -255,6 +256,7 @@ function msearch(
 									response.took,
 									response.hits && response.hits.hidden,
 									appendToHits,
+									prependToHits,
 								));
 								dispatch(setLoading(component, false));
 							}
@@ -503,7 +505,10 @@ export function updateQuery(
 	};
 }
 
-export function loadMore(component, newOptions, appendToHits = true, appendToAggs = false) {
+export function loadMore(
+	component, newOptions, appendToHits = true, appendToAggs = false,
+	prependToHits = false,
+) {
 	// `appendToAggs` will be `true` in case of consecutive loading
 	// of data-driven components via composite aggregations.
 
@@ -544,7 +549,10 @@ export function loadMore(component, newOptions, appendToHits = true, appendToAgg
 			currentQuery,
 		];
 
-		dispatch(msearch(finalQuery, [component], appendToHits, false, appendToAggs));
+		dispatch(msearch(
+			finalQuery, [component], appendToHits, false, appendToAggs, null,
+			prependToHits,
+		));
 	};
 }
 
