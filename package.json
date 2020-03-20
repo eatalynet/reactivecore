@@ -1,6 +1,6 @@
 {
 	"name": "@eatalynet/reactivecore",
-	"version": "9.2.6",
+	"version": "9.2.6-1",
 	"description": "Core architecture of reactive UI libraries",
 	"main": "lib/index.js",
 	"files": [
